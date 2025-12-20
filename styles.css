@@ -1,0 +1,110 @@
+:root{
+  --accent:#4b2b86;
+  --muted:#666;
+  --bg:#f7f7fb;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  color:#111;
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  background:white;
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.brand{display:flex;gap:12px;align-items:center;cursor:pointer}
+.logo-circle{
+  width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7b4be0);
+  color:white;display:flex;align-items:center;justify-content:center;font-weight:700;
+}
+.brand-title{font-weight:700}
+.brand-sub{font-size:12px;color:var(--muted);margin-top:-4px}
+
+.nav{display:flex;gap:14px;align-items:center}
+.nav-link{text-decoration:none;color:var(--muted);font-weight:600}
+.nav-link:hover{color:var(--accent)}
+
+main{padding:20px;max-width:1100px;margin:0 auto}
+
+/* Hero */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 520px;
+  gap:24px;
+  align-items:center;
+  margin-top:24px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.95));
+  padding:28px;
+  border-radius:12px;
+}
+.hero-content h1{font-size:34px;margin:0 0 8px}
+.lead{color:var(--muted);margin-bottom:16px}
+.hero-ctas{display:flex;gap:12px}
+.button{
+  border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600;
+}
+.button.primary{background:var(--accent);color:white}
+.button.ghost{background:transparent;border:1px solid #ddd}
+
+/* Hero image */
+.hero-image img{width:100%;height:360px;object-fit:cover;border-radius:10px;display:block}
+
+/* Features */
+.features{margin-top:34px;padding:20px;background:white;border-radius:10px}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:12px}
+.feature{padding:12px;border-radius:8px;background:#fafafa;border:1px solid #f0f0f5}
+
+/* Footer */
+.site-footer{text-align:center;padding:22px;color:var(--muted);margin-top:20px}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr; padding:18px}
+  .hero-image img{height:260px}
+}
+
+/* Product grid dense layout to emulate marketplace 'flood' view */
+.product-section { margin-top: 22px; }
+.product-tools { display:flex; gap:12px; align-items:center; margin-bottom:12px; }
+.product-grid.dense {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap:10px;
+}
+
+/* Card override for product-dense view */
+.product-card { padding:8px; border-radius:8px; background:white; border:1px solid #eee; display:flex; flex-direction:column; }
+.product-card .image-wrap { width:100%; height:140px; overflow:hidden; border-radius:6px; margin-bottom:8px; display:flex; align-items:center; justify-content:center; }
+.product-card img { width:100%; height:100%; object-fit:cover; display:block; }
+.card-body { display:flex; flex-direction:column; gap:6px; }
+.product-name { font-size:13px; margin:0; line-height:1.1; height:36px; overflow:hidden; }
+.product-meta { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.price { color:var(--accent); }
+.add-btn { background:var(--accent); color:white; padding:6px 8px; border-radius:6px; border:none; cursor:pointer; font-weight:700; }
+
+/* Header: search + cart badge */
+.search-form { flex:1; display:flex; justify-content:center; margin:0 12px; }
+.search-input { width:380px; max-width:40vw; }
+.cart-btn { position:relative; background:transparent;border:0; font-size:20px; cursor:pointer; }
+.cart-badge { position:absolute; top:-6px; right:-8px; background:#ff4d4f; color:white; font-size:12px; padding:3px 6px; border-radius:999px; }
+
+/* compact hero for more product-visibility */
+.hero-compact { grid-template-columns: 1fr 320px; }
+@media (max-width:900px) {
+  .search-input { width:180px; }
+  .hero-compact { grid-template-columns: 1fr; }
+}

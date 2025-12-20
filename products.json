@@ -1,0 +1,74 @@
+[
+  {
+    "id": "rv-001",
+    "name": "Royal Volubiks Diamond Pendant",
+    "price": 249.99,
+    "image": "https://images.unsplash.com/photo-1531169769780-7f2f9b9a4a7a?w=1000&q=80"
+  },
+  {
+    "id": "rv-002",
+    "name": "Royal Volubiks Gold Ring",
+    "price": 179.99,
+    "image": "https://images.unsplash.com/photo-1520962918522-4f6d7a5b1d81?w=1000&q=80"
+  },
+  {
+    "id": "rv-003",
+    "name": "Royal Volubiks Pearl Earrings",
+    "price": 129.99,
+    "image": "https://images.unsplash.com/photo-1535535205155-8d6d7f6f7a66?w=1000&q=80"
+  },
+  {
+    "id": "rv-004",
+    "name": "Royal Volubiks Sapphire Necklace",
+    "price": 199.99,
+    "image": "https://images.unsplash.com/photo-1601338266379-0bcbf0f6234e?w=1000&q=80"
+  },
+  {
+    "id": "rv-005",
+    "name": "Royal Volubiks Silver Bangle",
+    "price": 69.99,
+    "image": "https://images.unsplash.com/photo-1604372579502-9b2b420a4a2a?w=1000&q=80"
+  },
+  {
+    "id": "rv-006",
+    "name": "Royal Volubiks Emerald Ring",
+    "price": 229.99,
+    "image": "https://images.unsplash.com/photo-1622972554277-6b7b7c2f4f3f?w=1000&q=80"
+  },
+  {
+    "id": "rv-007",
+    "name": "Royal Volubiks Charm Bracelet",
+    "price": 89.99,
+    "image": "https://images.unsplash.com/photo-1585386959984-a4155225a7d9?w=1000&q=80"
+  },
+  {
+    "id": "rv-008",
+    "name": "Royal Volubiks Vintage Brooch",
+    "price": 54.99,
+    "image": "https://images.unsplash.com/photo-1594633314868-8b3b2a3e4e6b?w=1000&q=80"
+  },
+  {
+    "id": "rv-009",
+    "name": "Royal Volubiks Rose Gold Set",
+    "price": 149.99,
+    "image": "https://images.unsplash.com/photo-1613051996726-9f3d2e6a4b6e?w=1000&q=80"
+  },
+  {
+    "id": "rv-010",
+    "name": "Royal Volubiks Minimalist Necklace",
+    "price": 39.99,
+    "image": "https://images.unsplash.com/photo-1556228720-449d9b29a9d4?w=1000&q=80"
+  },
+  {
+    "id": "rv-011",
+    "name": "Royal Volubiks Statement Earrings",
+    "price": 119.99,
+    "image": "https://images.unsplash.com/photo-1613476511129-6c8d0c2b4d80?w=1000&q=80"
+  },
+  {
+    "id": "rv-012",
+    "name": "Royal Volubiks Luxury Watch",
+    "price": 499.99,
+    "image": "https://images.unsplash.com/photo-1519741496763-1c2b8b3a6e7c?w=1000&q=80"
+  }
+]
