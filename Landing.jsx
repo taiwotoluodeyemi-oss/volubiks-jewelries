@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
-import productsData from '../data/products.json';
+import ProductCard from './components/ProductCard';
+import Carousel from './components/Carousel';
+import productsData from './data/products.json';
 
 export default function Landing() {
   const [filter, setFilter] = useState('');
@@ -44,6 +45,11 @@ export default function Landing() {
         <div className="hero-image" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=1400&q=80" alt="Jewelry" />
         </div>
+      </section>
+
+      <section id="featured" className="product-section">
+        <h2>Featured</h2>
+        <Carousel products={productsData} perPage={6} autoPlay={true} interval={3000} onAdd={addToCart} />
       </section>
 
       <section id="products" className="product-section">
