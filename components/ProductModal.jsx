@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductModal({ product, open, onClose, onAdd }) {
   const navigate = useNavigate();
+  const [closing, setClosing] = useState(false);
+  const ANIM_MS = 220;
+
+  function closeWithAnim() {
+    setClosing(true);
+    setTimeout(() => {
+      setClosing(false);
+      if (onClose) onClose();
+    }, ANIM_MS);
+  }
+
   function onSeeMore() {
-    // navigate first so the route transition happens, then close the modal on next tick
+    // navigate first so the route transition happens, then close the modal with animation
     navigate(`/product/${product.id}`);
-    setTimeout(() => onClose && onClose(), 50);
+    setTimeout(() => closeWithAnim(), 50);
   }
   if (!product || !open) return null;
 
@@ -14,17 +25,17 @@ export default function ProductModal({ product, open, onClose, onAdd }) {
 
   useEffect(() => {
     function onKey(e) {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') closeWithAnim();
     }
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, []);
 
   return (
-    <div className="modal-overlay" role="dialog" aria-modal="true">
-      <div className="modal-backdrop" onClick={onClose} />
+    <div className={`modal-overlay ${closing ? 'closing' : ''}`} role="dialog" aria-modal="true">
+      <div className="modal-backdrop" onClick={closeWithAnim} />
       <div className="modal-card">
-        <button className="modal-close" aria-label="Close" onClick={onClose}>×</button>
+        <button className="modal-close" aria-label="Close" onClick={closeWithAnim}>×</button>
         <div className="modal-body">
           <div className="modal-gallery">
             {images[0] ? <img src={images[0]} alt={product.name} /> : <div className="no-image">No image</div>}
