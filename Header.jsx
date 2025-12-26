@@ -30,8 +30,11 @@ export default function Header() {
 
   const onSearch = (e) => {
     e.preventDefault();
-    navigate(`/shop?q=${encodeURIComponent(q)}`);
+    const trimmed = (q || '').trim();
+    const path = trimmed ? `/shop?q=${encodeURIComponent(trimmed)}` : '/shop';
+    navigate(path);
   };
+
 
   return (
     <header className="site-header">
@@ -49,6 +52,7 @@ export default function Header() {
           placeholder="Search products..."
           aria-label="Search products"
         />
+        <button type="submit" className="search-btn" aria-label="Search">🔍</button>
         {q && (
           <button
             type="button"
