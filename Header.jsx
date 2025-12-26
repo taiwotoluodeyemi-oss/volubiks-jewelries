@@ -29,10 +29,8 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="brand" onClick={() => navigate('/') }>
-        <div className="logo-circle">RV</div>
-        <div>
-          <div className="brand-title">Royal Volubiks</div>
-          <div className="brand-sub">Jewelries</div>
+        <div className="logo-image">
+          <img src="/images/IMG.jpg" alt="IMG" />
         </div>
       </div>
 
