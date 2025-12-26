@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ProductModal({ product, open, onClose, onAdd }) {
   if (!product || !open) return null;
@@ -28,7 +29,7 @@ export default function ProductModal({ product, open, onClose, onAdd }) {
             <p className="short-desc">{product.description}</p>
             <div className="modal-actions">
               <button className="button add-btn" onClick={() => onAdd(product)}>Add to cart</button>
-              <a href={`/product/${product.id}`} target="_blank" rel="noopener noreferrer" className="button secondary" onClick={onClose}>See more</a>
+              <Link to={`/product/${product.id}`} className="button secondary" onClick={onClose}>See more</Link>
             </div>
           </div>
         </div>
