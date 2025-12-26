@@ -17,7 +17,17 @@ export default function Payment() {
   // Fallback: if state not provided, compute totals from current cart
   const [summary, setSummary] = useState(() => state || { subtotal: 0, vat: 0, total: 0 });
 
+  const [shipping, setShipping] = useState({ fullName: '', address: '', city: '', postal: '', country: '', email: '' });
+  const [saveShipping, setSaveShipping] = useState(true);
+  const [errors, setErrors] = useState({});
+
   useEffect(() => {
+    // load saved shipping if any
+    try {
+      const s = JSON.parse(localStorage.getItem('rv_shipping') || 'null');
+      if (s) setShipping(s);
+    } catch {}
+
     if (!state) {
       const cart = loadCart();
       const map = {};
@@ -33,7 +43,23 @@ export default function Payment() {
     }
   }, [state]);
 
+  const validateShipping = () => {
+    const e = {};
+    if (!shipping.fullName.trim()) e.fullName = 'Full name is required';
+    if (!shipping.address.trim()) e.address = 'Address is required';
+    if (!shipping.city.trim()) e.city = 'City is required';
+    if (!shipping.postal.trim()) e.postal = 'Postal code is required';
+    if (!shipping.country.trim()) e.country = 'Country is required';
+    if (!shipping.email.trim() || !shipping.email.includes('@')) e.email = 'Valid email required';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
   const onPay = () => {
+    if (!validateShipping()) return;
+    if (saveShipping) {
+      try { localStorage.setItem('rv_shipping', JSON.stringify(shipping)); } catch {}
+    }
     setProcessing(true);
     setTimeout(() => {
       // simulate payment success
@@ -57,19 +83,75 @@ export default function Payment() {
   return (
     <div style={{ padding: 20 }}>
       <h2>Payment</h2>
-      <p>Amounts below are based on your cart.</p>
+      <p>Please enter your shipping details. Amounts below are based on your cart.</p>
 
-      <div className="checkout-summary" style={{ maxWidth: 420 }}>
-        <div className="summary-row"><span>Subtotal</span><strong>${summary.subtotal.toFixed(2)}</strong></div>
-        <div className="summary-row"><span>VAT (10%)</span><strong>${summary.vat.toFixed(2)}</strong></div>
-        <div className="summary-total"><span>Total</span><strong>${summary.total.toFixed(2)}</strong></div>
-      </div>
+      <div style={{ maxWidth: 720, display: 'grid', gridTemplateColumns: '1fr 340px', gap: 20 }}>
+        <div>
+          <form className="shipping-form" onSubmit={(e) => { e.preventDefault(); onPay(); }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+              <div>
+                <label>Full name</label>
+                <input className="input" value={shipping.fullName} onChange={(e) => setShipping({ ...shipping, fullName: e.target.value })} />
+                {errors.fullName && <div className="form-error">{errors.fullName}</div>}
+              </div>
+              <div>
+                <label> Email</label>
+                <input className="input" value={shipping.email} onChange={(e) => setShipping({ ...shipping, email: e.target.value })} />
+                {errors.email && <div className="form-error">{errors.email}</div>}
+              </div>
+            </div>
 
-      <div style={{ marginTop: 16 }}>
-        <button className="button primary" onClick={onPay} disabled={processing}>
-          {processing ? 'Processing…' : `Pay ${summary.total.toFixed(2)}`}
-        </button>
-        <Link to="/checkout" className="button ghost" style={{ marginLeft: 8 }}>Back to checkout</Link>
+            <div style={{ marginTop: 8 }}>
+              <label>Address</label>
+              <input className="input" value={shipping.address} onChange={(e) => setShipping({ ...shipping, address: e.target.value })} />
+              {errors.address && <div className="form-error">{errors.address}</div>}
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 8 }}>
+              <div>
+                <label>City</label>
+                <input className="input" value={shipping.city} onChange={(e) => setShipping({ ...shipping, city: e.target.value })} />
+                {errors.city && <div className="form-error">{errors.city}</div>}
+              </div>
+              <div>
+                <label>Postal code</label>
+                <input className="input" value={shipping.postal} onChange={(e) => setShipping({ ...shipping, postal: e.target.value })} />
+                {errors.postal && <div className="form-error">{errors.postal}</div>}
+              </div>
+            </div>
+
+            <div style={{ marginTop: 8 }}>
+              <label>Country</label>
+              <input className="input" value={shipping.country} onChange={(e) => setShipping({ ...shipping, country: e.target.value })} />
+              {errors.country && <div className="form-error">{errors.country}</div>}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 10 }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <input type="checkbox" checked={saveShipping} onChange={(e) => setSaveShipping(e.target.checked)} /> Save shipping info
+              </label>
+            </div>
+
+            <div style={{ marginTop: 12 }}>
+              <button className="button primary" type="submit" disabled={processing}>{processing ? 'Processing…' : `Pay ${summary.total.toFixed(2)}`}</button>
+              <Link to="/checkout" className="button ghost" style={{ marginLeft: 8 }}>Back to checkout</Link>
+            </div>
+          </form>
+
+          <div style={{ marginTop: 18 }}>
+            <h4>Payment method</h4>
+            <p className="muted">This demo uses a simulated payment flow. To integrate a real provider (Stripe/PayPal) replace the onPay handler with provider integration.</p>
+          </div>
+        </div>
+
+        <div>
+          <div className="checkout-summary" style={{ maxWidth: 340 }}>
+            <div className="summary-row"><span>Subtotal</span><strong>${summary.subtotal.toFixed(2)}</strong></div>
+            <div className="summary-row"><span>VAT (10%)</span><strong>${summary.vat.toFixed(2)}</strong></div>
+            <div className="summary-total"><span>Total</span><strong>${summary.total.toFixed(2)}</strong></div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
