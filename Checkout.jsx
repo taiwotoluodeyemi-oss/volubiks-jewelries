@@ -85,19 +85,19 @@ export default function Checkout() {
                       <span className="qty">{qty}</span>
                       <button className="qty-btn" aria-label={`Increase ${product.name}`} onClick={() => changeQty(product.id, 1)}>+</button>
                     </div>
-                    <div className="cart-price">${product.price.toFixed(2)} each</div>
+                      <div className="cart-price">₦{product.price.toFixed(2)} each</div>
                   </div>
                 </div>
-                <div className="cart-line">${(product.price * qty).toFixed(2)}</div>
+                <div className="cart-line">₦{(product.price * qty).toFixed(2)}</div>
               </div>
             ))}
           </div>
 
           <aside className="checkout-summary">
             <h3>Summary</h3>
-            <div className="summary-row"><span>Subtotal</span><strong>${subtotal.toFixed(2)}</strong></div>
-            <div className="summary-row"><span>VAT (10%)</span><strong>${vat.toFixed(2)}</strong></div>
-            <div className="summary-total"><span>Total</span><strong>${total.toFixed(2)}</strong></div>
+            <div className="summary-row"><span>Subtotal</span><strong>₦{subtotal.toFixed(2)}</strong></div>
+            <div className="summary-row"><span>VAT (10%)</span><strong>₦{vat.toFixed(2)}</strong></div>
+            <div className="summary-total"><span>Total</span><strong>₦{total.toFixed(2)}</strong></div> 
 
             <Link to="/payment" state={{ subtotal, vat, total }} className="button primary" style={{ display: 'block', marginTop: 12 }}>Proceed to Payment</Link>
             <Link to="/shop" className="button ghost" style={{ display: 'block', marginTop: 8 }}>Continue shopping</Link>

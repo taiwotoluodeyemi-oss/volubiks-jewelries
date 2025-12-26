@@ -5,6 +5,7 @@ import Landing from './Landing';
 import Shop from './Shop';
 import Checkout from './Checkout';
 import Payment from './Payment';
+import ProductPage from './components/ProductPage';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/payment" element={<Payment />} />
         </Routes>

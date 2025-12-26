@@ -74,7 +74,7 @@ export default function Payment() {
     return (
       <div style={{ padding: 20 }}>
         <h2>Payment successful</h2>
-        <p>Thanks! Your payment of <strong>${summary.total.toFixed(2)}</strong> was processed.</p>
+        <p>Thanks! Your payment of <strong>₦{summary.total.toFixed(2)}</strong> was processed.</p>
         <Link to="/">Return to home</Link>
       </div>
     );
@@ -133,7 +133,7 @@ export default function Payment() {
             </div>
 
             <div style={{ marginTop: 12 }}>
-              <button className="button primary" type="submit" disabled={processing}>{processing ? 'Processing…' : `Pay ${summary.total.toFixed(2)}`}</button>
+              <button className="button primary" type="submit" disabled={processing}>{processing ? 'Processing…' : `Pay ₦${summary.total.toFixed(2)}`}</button>
               <Link to="/checkout" className="button ghost" style={{ marginLeft: 8 }}>Back to checkout</Link>
             </div>
           </form>
@@ -161,9 +161,9 @@ export default function Payment() {
 
         <div>
           <div className="checkout-summary" style={{ maxWidth: 340 }}>
-            <div className="summary-row"><span>Subtotal</span><strong>${summary.subtotal.toFixed(2)}</strong></div>
-            <div className="summary-row"><span>VAT (10%)</span><strong>${summary.vat.toFixed(2)}</strong></div>
-            <div className="summary-total"><span>Total</span><strong>${summary.total.toFixed(2)}</strong></div>
+            <div className="summary-row"><span>Subtotal</span><strong>₦{summary.subtotal.toFixed(2)}</strong></div>
+            <div className="summary-row"><span>VAT (10%)</span><strong>₦{summary.vat.toFixed(2)}</strong></div>
+            <div className="summary-total"><span>Total</span><strong>₦{summary.total.toFixed(2)}</strong></div>
           </div>
 
         </div>

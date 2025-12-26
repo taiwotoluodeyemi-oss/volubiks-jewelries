@@ -34,16 +34,27 @@ export default function Landing() {
   return (
     <div className="landing">
       <section className="hero hero-compact">
-        <div className="hero-content">
-          <h1>Royal Volubiks Jewelries</h1>
-          <p className="lead">Explore thousands of pieces — everyday low prices, premium shine.</p>
-          <div className="hero-ctas">
-            <Link to="/shop"><button className="button primary">Shop Collection</button></Link>
-            <a href="#products"><button className="button ghost">Browse Products</button></a>
+        <div className="sparkle s1" />
+        <div className="sparkle s2" />
+        <div className="sparkle s3" />
+        <div className="hero-inner">
+          <div className="hero-content">
+            <h1 className="logo-heading" aria-label="Royal Volubiks Jewelries">
+              <span className="crown" aria-hidden="true"><svg width="28" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M2 8l3 8 4-6 4 6 4-8 3 8H2z" fill="#b8860b"/></svg></span>
+            <svg className="title-svg" viewBox="0 0 1200 260" preserveAspectRatio="xMinYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <text x="0" y="180" className="svg-title" fill="#b8860b" fontSize="220" textLength="1040" lengthAdjust="spacingAndGlyphs">Royal Volubiks Jewelries</text>
+            </svg> 
+              <span className="sr-only">Royal Volubiks Jewelries</span>
+            </h1>
+            <p className="lead">Explore thousands of pieces — everyday low prices, premium shine.</p>
+            <div className="hero-ctas">
+              <Link to="/shop"><button className="button primary">Shop Collection</button></Link>
+              <a href="#products"><button className="button ghost">Browse Products</button></a>
+            </div>
           </div>
-        </div>
-        <div className="hero-image" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=1400&q=80" alt="Jewelry" />
+          <div className="hero-image" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=1400&q=80" alt="Jewelry" />
+          </div>
         </div>
       </section>
 

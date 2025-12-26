@@ -1,0 +1,5 @@
+id,name,slug,price,currency,image,description,category,featured,inventory,tags
+1,Royal Volubiks Diamond Pendant,royal-diamond-pendant,1299,NGN,/images/pendant.jpg,"A brilliant diamond pendant with classic setting.",necklace,true,12,diamond;pendant;luxury
+2,Royal Volubiks Gold Ring,royal-gold-ring,499,NGN,/images/gold-ring.jpg,"Handcrafted gold ring with polished finish.",rings,false,30,gold;ring
+3,Royal Volubiks Pearl Earrings,royal-pearl-earrings,279,NGN,/images/pearl-earrings.jpg,"Pearl drop earrings for elegant occasions.",earrings,false,25,pearl;earrings
+4,Sample Pendant,sample-pendant,1499,NGN,/images/IMG.jpg,"Sample pendant for import test",necklace,true,5,sample;pendant
