@@ -49,6 +49,16 @@ export default function Header() {
           placeholder="Search products..."
           aria-label="Search products"
         />
+        {q && (
+          <button
+            type="button"
+            className="search-clear"
+            aria-label="Clear search"
+            onClick={() => { setQ(''); navigate('/shop'); }}
+          >
+            ✖
+          </button>
+        )}
       </form>
 
       <nav className="nav">
