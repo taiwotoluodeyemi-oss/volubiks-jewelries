@@ -11,6 +11,9 @@ export default function ProductCard({ product, onAdd, onPreview }) {
       </div>
       <div className="card-body">
         <h4 className="product-name">{product.name}</h4>
+        {product.description && (
+          <p className="product-desc">{product.description}</p>
+        )}
         <div className="product-meta">
           <strong className="price">₦{product.price.toFixed(2)}</strong>
           <button
