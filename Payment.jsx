@@ -141,6 +141,21 @@ export default function Payment() {
           <div style={{ marginTop: 18 }}>
             <h4>Payment method</h4>
             <p className="muted">This demo uses a simulated payment flow. To integrate a real provider (Stripe/PayPal) replace the onPay handler with provider integration.</p>
+
+            <div style={{ marginTop: 10 }}>
+              <button className="button" onClick={async () => {
+                try {
+                  const res = await fetch('/api/create-checkout-session', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ summary }) });
+                  if (!res.ok) throw new Error('no-backend');
+                  const data = await res.json();
+                  if (data && data.url) window.location.href = data.url;
+                  else alert('Unexpected response from backend.');
+                } catch (e) {
+                  // graceful fallback
+                  alert('Stripe integration is not configured in this demo. See PAYMENT_INTEGRATION.md in the repo for setup steps.');
+                }
+              }}>Pay with Stripe (test)</button>
+            </div>
           </div>
         </div>
 
