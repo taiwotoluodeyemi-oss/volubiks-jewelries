@@ -99,8 +99,15 @@ main{padding:20px;max-width:1100px;margin:0 auto}
 .cart-body{flex:1}
 .cart-name{font-weight:700;margin-bottom:6px}
 .cart-meta{color:var(--muted)}
+.cart-price{font-size:13px;color:var(--muted);margin-top:6px}
 .cart-line{font-weight:700;color:var(--accent)}
 .checkout-summary{background:white;padding:14px;border-radius:8px;border:1px solid #eee}
+
+/* qty controls */
+.qty-controls{display:flex;align-items:center;gap:8px}
+.qty-btn{background:#f5f5f5;border:1px solid #e8e8e8;padding:6px 10px;border-radius:6px;cursor:pointer}
+.qty-btn:hover{background:#eef}
+.qty{min-width:22px;text-align:center;display:inline-block}
 .summary-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #f0f0f0}
 .summary-total{display:flex;justify-content:space-between;padding:12px 0;font-weight:800;font-size:18px}
 
