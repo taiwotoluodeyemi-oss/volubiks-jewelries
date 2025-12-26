@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function ProductCard({ product, onAdd }) {
+export default function ProductCard({ product, onAdd, onPreview }) {
   const thumb = (product.images && product.images.length) ? product.images[0] : product.image;
   return (
     <div className="card product-card">
-      <div className="image-wrap">
-        <Link to={`/product/${product.id}`}>
-          <img src={thumb} alt={product.name} />
-        </Link>
+      <div className="image-wrap" role="button" tabIndex={0} onClick={() => onPreview && onPreview(product)} onKeyDown={(e)=>{ if(e.key === 'Enter' || e.key === ' ') onPreview && onPreview(product); }}>
+      {/* image uses the public path; keep the img tag for accessibility */}
+        <img src={thumb} alt={product.name} />
       </div>
       <div className="card-body">
         <h4 className="product-name">{product.name}</h4>

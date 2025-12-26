@@ -2,6 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import products from './data/products.json';
 import ProductCard from './components/ProductCard';
+import ProductModal from './components/ProductModal';
 
 export default function Shop() {
   const [searchParams] = useSearchParams();
@@ -57,6 +58,8 @@ export default function Shop() {
     results = scored.length ? scored : products.filter(p => p.name.toLowerCase().includes(q) || (p.id || '').toLowerCase().includes(q));
   }
 
+  const [preview, setPreview] = React.useState(null);
+
   const onAdd = (product) => {
     try {
       const cart = JSON.parse(localStorage.getItem('rv_cart') || '[]');
@@ -69,6 +72,9 @@ export default function Shop() {
     }
   };
 
+  const onPreview = (product) => setPreview(product);
+  const closePreview = () => setPreview(null);
+
   return (
     <div style={{ padding: 20 }}>
       <h2>Shop</h2>
@@ -79,10 +85,12 @@ export default function Shop() {
       ) : (
         <div className="product-grid dense">
           {results.map((p) => (
-            <ProductCard key={p.id} product={p} onAdd={onAdd} />
+            <ProductCard key={p.id} product={p} onAdd={onAdd} onPreview={onPreview} />
           ))}
         </div>
       )}
+
+      <ProductModal product={preview} open={Boolean(preview)} onClose={closePreview} onAdd={(p) => { onAdd(p); closePreview(); }} />
     </div>
   );
 }
