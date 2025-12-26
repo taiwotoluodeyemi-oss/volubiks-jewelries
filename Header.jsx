@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function getCartCount() {
   try {
@@ -20,6 +20,13 @@ export default function Header() {
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);
   }, []);
+
+  // keep header search input in sync with the URL ?q= parameter
+  const location = useLocation();
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setQ(params.get('q') || '');
+  }, [location.search]);
 
   const onSearch = (e) => {
     e.preventDefault();
